@@ -15,11 +15,9 @@ ARG SHA=707b1f6e390a65bde4af4cdaf2a24d45fc19a6ded00fff02e91626e3e42ceaff
 # Install Java
 RUN \
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
   apt-get update && \
-  apt-get install -y software-properties-common python-software-properties && \
-  add-apt-repository ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install oracle-java7-installer && \
+  apt-get install -y oracle-java7-installer && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk7-installer
 
@@ -53,7 +51,7 @@ RUN rm -rf /mnt/docker/
 RUN git clone https://github.com/crossoverQA/crossover-tests.git /mnt/docker/
 
 # command to execute tests
-# CMD ["/mnt/docker/mvn -P local clean install -Dtest=TestSuiteAll"]
+CMD ["/mnt/docker/mvn -P local clean install -Dtest=TestSuiteAll"]
 
 
 
