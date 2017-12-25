@@ -49,8 +49,5 @@ RUN apt-get update
 RUN apt-get install -y git
 
 # copy from github
-RUN rm -rf /mnt/docker/
-RUN git clone https://github.com/crossoverQA/crossover-tests.git /mnt/docker/
-
-# command to execute tests
-CMD ["/mnt/docker/mvn -P local clean install -Dtest=TestSuiteAll"]
+RUN rm -rf /mnt
+RUN git clone https://github.com/crossoverQA/crossover-tests.git /mnt

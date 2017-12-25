@@ -17,7 +17,7 @@
     <!-- Global Properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <junit.version>4.12</junit.version>
         <ignoreSnapshots>true</ignoreSnapshots>
         <cucumber.version>1.2.5</cucumber.version>
