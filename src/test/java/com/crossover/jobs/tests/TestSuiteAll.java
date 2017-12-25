@@ -16,4 +16,6 @@ import cucumber.api.junit.Cucumber;
         glue = {"com.crossover.jobs.stepdefinition"},
         features = {"classpath:feature_files/seachJobFilters.feature"})
 public class TestSuiteAll {
+
 }
+
