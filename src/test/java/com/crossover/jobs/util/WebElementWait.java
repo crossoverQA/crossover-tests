@@ -1,0 +1,64 @@
+package com.crossover.jobs.util;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public abstract class WebElementWait {
+    public final static int WAIT_TIMEOUT_DEFAULT = 40;
+    protected final WebDriver itsDriver;
+    protected final WebDriverWait itsWait;
+
+    public WebElementWait(final WebDriver driver) {
+        itsDriver = driver;
+        PageFactory.initElements(driver, this);
+        itsWait = createWebWaitDriver(WAIT_TIMEOUT_DEFAULT);
+    }
+
+    public WebDriver getDriver() {
+        return itsDriver;
+    }
+
+    private void assertCheckIfNotNull(final String message, final WebElement element) {
+        Assert.assertNotNull(message, element);
+    }
+
+    // This method will wait till element is Clickable
+
+    protected WebElement waitUntilElementIsClickable(final WebElement element) {
+        final String message = String.format("FAIL : Element with these details is NULL : '%s'", element);
+        assertCheckIfNotNull(message, element);
+        return itsWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    // This method creates a WebDriverWait
+
+    protected WebDriverWait createWebWaitDriver(final long timeOutInSeconds) {
+        return new WebDriverWait(itsDriver, timeOutInSeconds);
+    }
+
+    // This method waits until the element is visible
+
+    protected WebElement waitUntilElementIsVisible(final WebElement element) {
+        final String message = String.format("FAIL : Element with these details is NULL : '%s'", element);
+        assertCheckIfNotNull(message, element);
+        return itsWait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    //  Waits for given amount of time, Since it affects state in the driver we should undo it using a finally.
+
+    public void implicitWait(final int time) {
+        itsDriver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+    }
+
+    // Waits for element to be visible within 30 sec
+
+    public void waitForVisible(final WebElement webElement) {
+        itsWait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+}
