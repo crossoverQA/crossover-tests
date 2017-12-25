@@ -15,11 +15,13 @@ ARG SHA=707b1f6e390a65bde4af4cdaf2a24d45fc19a6ded00fff02e91626e3e42ceaff
 # Install Java
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  apt-get update && \
+  apt-get install -y software-properties-common python-software-properties && \
   add-apt-repository -y ppa:webupd8team/java && \
   apt-get update && \
   apt-get install -y oracle-java8-installer && \
   rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk7-installer
+  rm -rf /var/cache/oracle-jdk8-installer
 
 # Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -52,8 +54,3 @@ RUN git clone https://github.com/crossoverQA/crossover-tests.git /mnt/docker/
 
 # command to execute tests
 CMD ["/mnt/docker/mvn -P local clean install -Dtest=TestSuiteAll"]
-
-
-
-
-
