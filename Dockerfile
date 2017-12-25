@@ -1,5 +1,5 @@
 # Pull base image for cucumber/selenium
-FROM  maven:3.5.2-jdk-8
+FROM  ubuntu:latest
 
 MAINTAINER Tauqir Sarwar
 
@@ -14,12 +14,14 @@ ARG SHA=707b1f6e390a65bde4af4cdaf2a24d45fc19a6ded00fff02e91626e3e42ceaff
 
 # Install Java
 RUN \
+  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   apt-get update && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y oracle-java8-installer && \
+  apt-get install -y software-properties-common python-software-properties && \
+  add-apt-repository ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install oracle-java7-installer && \
   rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk8-installer
-
+  rm -rf /var/cache/oracle-jdk7-installer
 
 # Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -30,8 +32,6 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 	&& rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
 	&& sed -i 's/"$HERE\/chrome"/"$HERE\/chrome" --no-sandbox/g' /opt/google/chrome/google-chrome
 
-
-
 # Define working directory.
 WORKDIR /data
 
@@ -41,7 +41,7 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 # Define commonly used JAVA_HOME variable
 RUN java -version
 RUN which java
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
 #Git install
 
