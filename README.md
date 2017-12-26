@@ -44,7 +44,8 @@ Sometimes it can be useful to override these options without changing or recompi
 
 **Using Maven (to run tests):**
 
-mvn -P local clean install -Dheadless.execution=yes -Dtest=TestSuiteAllor
+mvn -P local clean install -Dheadless.execution=yes -Dtest=TestSuiteAll
+or
 mvn  test -Dcucumber.options="--tags @Sanity"
 
 -Dcucumber.options="--help"
@@ -59,7 +60,13 @@ I installed docker setup on window 10 with all configurationsand prepared a Dock
 
 
 **Docker imageBuild commands:**
+Image location : (https://drive.google.com/file/d/18iosObigpsATKZAaZU8416azYYpuHOv1/view)
+
 1- docker pull ubuntu:latest
 2- docker build -f Dockerfile -t ubuntu:latest .
 **Test Execution command:**
 mvn -P local clean install -Dheadless.execution=yes -Dtest=TestSuiteAll
+
+
+# if copy from local system to start container
+docker run -it --privileged -v "D:/<path>/crossover-tests:/mnt" --name cucumber sha256:cc24dc689408e8aad795c2643bbb887ad90ddd21533d51af988171f8af7f342e  bash
