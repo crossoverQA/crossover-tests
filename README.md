@@ -67,10 +67,11 @@ When you override options with -Dcucumber.options, you will completely override 
 7- logger to write log in console for verification
 
 **Docker File:**
-I intalled docker setup on window 10 with all configurationsand prepared a Dockerfile (on project root which have all env readiness)to execute container.
+I installed docker setup on window 10 with all configurationsand prepared a Dockerfile (on project root which have all env readiness)to execute container.
 
 
-**Docker image/run commands:**
-1- docker pull maven:3.5.2-jdk-8
-2- docker build -f Dockerfile -t maven:3.5.2-jdk-8 .
-3- mvn -P local clean install -Dtest=TestSuiteAll
+**Docker imageBuild commands:**
+1- docker pull ubuntu:latest
+2- docker build -f Dockerfile -t ubuntu:latest .
+**Test Execution command:**
+mvn -P local clean install -Dheadless.execution=yes -Dtest=TestSuiteAll
