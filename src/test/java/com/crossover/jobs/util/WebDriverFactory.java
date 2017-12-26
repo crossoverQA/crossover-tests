@@ -83,7 +83,7 @@ public final class WebDriverFactory {
         DesiredCapabilities caps = DesiredCapabilities.chrome();
         options.addArguments("--test-type");
         String headlessType = System.getProperty("headless.execution");
-        if (headlessType.equalsIgnoreCase("Yes")) {
+        if (headlessType != null && !headlessType.isEmpty() && headlessType.equalsIgnoreCase("Yes")) {
             options.addArguments("--headless");
         }
         options.addArguments("--no-sandbox");
