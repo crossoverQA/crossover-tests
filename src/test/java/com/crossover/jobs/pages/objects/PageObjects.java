@@ -79,6 +79,12 @@ public class PageObjects extends AbstractBasePage {
         clickElement(element);
     }
 
+    public void clickMobileMenuButton() {
+
+        waitForVisible(locator.mobileMenuButton);
+        locator.mobileMenuButton.click();
+
+    }
     public void verifySearchList(String searchText) {
 
         if (locator.jobResultsList.size() > 0) {

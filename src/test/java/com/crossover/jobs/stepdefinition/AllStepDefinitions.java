@@ -234,4 +234,18 @@ public class AllStepDefinitions {
             Assert.fail();
         }
     }
+
+    @When("^click on mobile menu button$")
+    public void clickOnMobileMenuButton() {
+        logger.info("---------click on mobile menu button Step Started-------");
+        try {
+            jobPageObjects.clickMobileMenuButton();
+        } catch (Exception e) {
+            logger.error("Exception occurred: ", e);
+            throw e;
+        } finally {
+            WebDriverActions.embedScreenShot(scenario, driver);
+            logger.info("---------click on mobile menu button Step Ended-------");
+        }
+    }
 }

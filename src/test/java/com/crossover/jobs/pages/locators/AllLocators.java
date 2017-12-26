@@ -26,6 +26,9 @@ public class AllLocators {
     @FindBy(xpath = "//li[@class='ui-select-choices-group']/div")
     public List<WebElement> jobListCategory;
 
+    @FindBy(xpath = "//*[@class='glyphicon glyphicon-menu-hamburger pull-right mobile-nav-trigger']")
+    public WebElement mobileMenuButton;
+
     public String getHLink(String linkText) {
         String hLinkXPath = "//*[contains(text(),'" + linkText + "')]";
         return hLinkXPath;

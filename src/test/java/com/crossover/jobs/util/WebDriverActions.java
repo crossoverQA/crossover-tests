@@ -4,11 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver.Options;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,7 +73,9 @@ public class WebDriverActions
 
 		manage.deleteAllCookies();
 		manage.timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		manage.window().maximize();
+		driver.manage().window().setSize(new Dimension(1040, 795));
+
+//		manage.window().maximize();
 	}
 
 	public static void closeBrowser(final Scenario scenario, final WebDriver driver)

@@ -64,3 +64,6 @@ RUN apt-get install -y git
 # copy from github
 RUN rm -rf /mnt
 RUN git clone https://github.com/crossoverQA/crossover-tests.git /mnt
+
+RUN chmod +x /mnt/src/test/java/webdrivers/linux/chromedriver \
+    && chmod +x /mnt/src/test/java/webdrivers/osx/chromedriver

@@ -29,7 +29,8 @@ Feature: Crossover Job Portal Job Search Functionality
     When click on "RESET" button
     Then verify that default job page is opened
     # Step 10
-    When click "About us" link on the page
+    When click on mobile menu button
+    And click "About us" link on the page
     And click "Home" link on the page
     Then application shows main home page
     # Step 11

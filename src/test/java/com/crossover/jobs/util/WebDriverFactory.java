@@ -82,6 +82,10 @@ public final class WebDriverFactory {
         prefs.put("download.default_directory", System.getProperty("user.dir"));
         DesiredCapabilities caps = DesiredCapabilities.chrome();
         options.addArguments("--test-type");
+        String headlessType = System.getProperty("headless.execution");
+        if (headlessType.equalsIgnoreCase("Yes")) {
+            options.addArguments("--headless");
+        }
         options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
         options.addArguments("--disable-notifications");
